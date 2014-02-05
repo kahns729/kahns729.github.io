@@ -23,8 +23,9 @@ p.skills {
 	margin-left:12px;
 }
 
-@media (min-width:520px) {
+@media (min-width:640px) {
 	div {
+		margin-left:140px;
 		width:500px;
 	}
 }
