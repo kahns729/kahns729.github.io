@@ -1,9 +1,27 @@
 body {
-	background-color:green;
+	background-color:#2CC7C5;
 }
 
-img {
-	height:100px;
-	width:100px;
+img#profile {
+	display:block;
+	margin-right: auto;
+	margin-left: auto;
+	height:420px;
+	width:540px;
 	border-radius:40px;
+}
+
+div#right {
+	float:right;
+}
+
+div#left{
+	float:left;
+}
+
+h1#name {
+	font-family: "Comic Sans MS";
+	font-size:64px;
+	color:#ffd700;
+	text-align: center;
 }
