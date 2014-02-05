@@ -1,0 +1,30 @@
+h1 {
+	margin-bottom: 0px;
+}
+
+p#email {
+	margin-top: 0px;
+	margin-left: 8px;
+	font-size: 16x;
+	font-style:italic;
+	font-family: "Times New Roman";
+}
+
+h2 {
+	margin-bottom:0px;
+}
+
+ul {
+	margin-top:0px;
+}
+
+p.skills {
+	margin: 0px;
+	margin-left:12px;
+}
+
+@media (min-width:520px) {
+	div {
+		width:500px;
+	}
+}

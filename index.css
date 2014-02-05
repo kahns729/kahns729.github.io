@@ -6,16 +6,19 @@ img#profile {
 	display:block;
 	margin-right: auto;
 	margin-left: auto;
-	height:420px;
-	width:540px;
+	width:50%;
 	border-radius:40px;
 }
 
 div#right {
+	margin-top: 50px;
+	width:25%;
 	float:right;
 }
 
 div#left{
+	margin-top: 50px;
+	width:25%;
 	float:left;
 }
 
@@ -23,5 +26,13 @@ h1#name {
 	font-family: "Comic Sans MS";
 	font-size:64px;
 	color:#ffd700;
+	text-align: center;
+}
+
+a {
+	display:block;
+	font-size:24px;
+	font-family: Helvetica;
+	font-color:blue;
 	text-align: center;
 }
