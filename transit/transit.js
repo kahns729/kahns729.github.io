@@ -3,7 +3,7 @@ var xhr;
 var stations = new Array();
 
 function initialize(){
-	latlng=google.maps.LatLng(42.39674,-71.121815);
+	latlng = getLocation;
 	myOptions = {center:latlng, zoom:14};
 	map = new google.maps.Map(
 		document.getElementById("map_canvas"),myOptions);
@@ -50,7 +50,7 @@ function plotStations(stations){
 		})
 	}
 }
-/*
+
 function getLocation() {
 	lat = 0;
 	lng = 0;
@@ -59,9 +59,10 @@ function getLocation() {
 			lat = position.coords.latitude;
 			lng = position.coords.longitude;
 		});
-		return google.maps.LatLng(lat,lng);
+		myLocation = new google.maps.LatLng(lat,lng);
+		return myLocation;
 	}
-}*/
+}
 
 //array of stations. 
 //each station is an array with 4 indices
