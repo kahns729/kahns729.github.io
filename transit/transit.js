@@ -61,6 +61,11 @@ function getLocation() {
 			lng = position.coords.longitude;
 			myLocation = new google.maps.LatLng(lat,lng);
 			map.panTo(myLocation);
+			var marker = new google.maps.Marker({
+			position:myLocation,
+			map: map,
+			title: 'You are here.'
+	});
 		});
 	}
 	else {
