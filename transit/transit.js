@@ -58,6 +58,7 @@ function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position){
 			lat = position.coords.latitude;
+			console.log("getting position");
 			lng = position.coords.longitude;
 		});
 		myLocation = new google.maps.LatLng(lat,lng);
