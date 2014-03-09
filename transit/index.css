@@ -13,3 +13,10 @@ body {
 	height:100%;
 	background-color:blue;
 }
+
+p {
+	font-size: 10px;
+	text-align: center;
+	margin:0px;
+	padding:0px;
+}

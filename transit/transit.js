@@ -2,6 +2,10 @@ var xhr;
 //stations of the relevant line
 var stations = new Array();
 var myLocation;
+//html element with information to be displayed at location
+var youAreHere = "<p>You are here.</p>";
+//the line
+var line;
 
 function initialize(){
 	//Boston
@@ -25,7 +29,7 @@ function dataReady(){
 		//parse data
 		schedule = JSON.parse(xhr.responseText);
 		var pos = 0;
-		var line = schedule["line"];
+		line = schedule["line"];
 		//choose relevant stations
 		for (var i=0; i<stationsBefore.length;i++){
 			if (stationsBefore[i][0].toLowerCase() == line){
@@ -86,38 +90,52 @@ function getLocation() {
 	var marker = new google.maps.Marker({
 		position:myLocation,
 		map:map,
-		title: 'You are here.'
-	})
+		title: 'You are here'
+	});
 	findClosest();
+	function findClosest(){
+		var closestStation = stations[0];
+		for (var i=1; i<stations.length;i++){
+			if (distance(myLocation.lat(),myLocation.lng(),
+				stations[i][2],stations[i][3]) <
+				distance(myLocation.lat(),myLocation.lng(),
+					closestStation[2],closestStation[3])){
+				closestStation = stations[i];
+			}
+		}
+		//custom content to display at myLocation
+		youAreHere = youAreHere + "<p>Closest " + line 
+			+ " line station is: "
+			+ closestStation[1] + "</p>";
+		youAreHere = youAreHere + "<p>Distance of " + 
+			(distance(myLocation.lat(),myLocation.lng(),
+				closestStation[2],closestStation[3]) *
+			0.621371).toFixed(4) + " miles.</p>";
+		//display the content
+		var myWindow = new google.maps.InfoWindow({
+				content:youAreHere
+		});
+		//open the display window
+		myWindow.open(map,marker);
+		//distance between two lats and longs
+		function distance(lt1,ln1,lt2,ln2){
+			function toRad(dgrs){
+				return dgrs * Math.PI / 180;
+			}
+			var R = 6371;
+			var dlt = toRad(lt2-lt1);
+			var dln = toRad(ln2-ln1);
+			var lt1 = toRad(lt1);
+			var lt2 = toRad(lt2);
+			var a = Math.sin(dlt/2)*Math.sin(dlt/2)+Math.sin(dln/2)*Math.sin(dln/2)*Math.cos(lt1)*Math.cos(lt2);
+			var c = 2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+			var d = R*c;
+			return d;
+		}
+	}
 }
 
-function findClosest(){
-	var closestStation = stations[0];
-	console.log(stations);
-	for (var i=1; i<stations.length;i++){
-		if (distance(myLocation.lat(),myLocation.lng(),
-			stations[i][2],stations[i][3]) <
-			distance(myLocation.lat(),myLocation.lng(),
-				closestStation[2],closestStation[3])){
-			closestStation = stations[i];
-		}
-		console.log(closestStation);
-	}
-	function distance(lt1,ln1,lt2,ln2){
-		function toRad(dgrs){
-			return dgrs * Math.PI / 180;
-		}
-		var R = 6371;
-		var dlt = toRad(lt2-lt1);
-		var dln = toRad(ln2-ln1);
-		var lt1 = toRad(lt1);
-		var lt2 = toRad(lt2);
-		var a = Math.sin(dlt/2)*Math.sin(dlt/2)+Math.sin(dln/2)*Math.sin(dln/2)*Math.cos(lt1)*Math.cos(lt2);
-		var c = 2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-		var d = R*c;
-		return d;
-	}
-}
+
 
 //array of stations. 
 //each station is an array with 4 indices
