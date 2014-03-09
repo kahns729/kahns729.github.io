@@ -12,7 +12,7 @@ function initialize(){
 		"http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
 	xhr.onreadystatechange = dataReady;
 	xhr.send(null);
-	getLocation();
+	console.log(getLocation());
 	/*var marker = new google.maps.Marker({
 		position:latlng,
 		map: map,
@@ -58,15 +58,13 @@ function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position){
 			lat = position.coords.latitude;
-			console.log("getting position");
 			lng = position.coords.longitude;
+			myLocation = new google.maps.LatLng(lat,lng);
+			map.panTo(myLocation);
 		});
-		myLocation = new google.maps.LatLng(lat,lng);
-		map.panTo(myLocation);
 	}
 	else {
-		myLocation = new google.maps.LatLng(42.4040289, -71.1202292999999);
-		map.panTo(myLocation);
+		console.log("error: geolocation not supported");
 	}
 }
 
