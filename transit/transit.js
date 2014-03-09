@@ -3,7 +3,7 @@ var xhr;
 var stations = new Array();
 
 function initialize(){
-	latlng = getLocation;
+	latlng = new google.maps.LatLng(42.3581, -71.0636);
 	myOptions = {center:latlng, zoom:14};
 	map = new google.maps.Map(
 		document.getElementById("map_canvas"),myOptions);
@@ -12,11 +12,12 @@ function initialize(){
 		"http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
 	xhr.onreadystatechange = dataReady;
 	xhr.send(null);
-	var marker = new google.maps.Marker({
+	getLocation();
+	/*var marker = new google.maps.Marker({
 		position:latlng,
 		map: map,
 		title: 'Hello World!'
-	});
+	});*/
 }
 
 function dataReady(){
@@ -60,7 +61,11 @@ function getLocation() {
 			lng = position.coords.longitude;
 		});
 		myLocation = new google.maps.LatLng(lat,lng);
-		return myLocation;
+		map.setCenter(myLocation);
+	}
+	else {
+		myLocation = new google.maps.LatLng(42.4040289, -71.1202292999999);
+		map.setCenter(myLocation);
 	}
 }
 
