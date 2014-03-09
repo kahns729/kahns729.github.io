@@ -53,19 +53,19 @@ function plotStations(stations){
 }
 
 function getLocation() {
-	lat = 0;
-	lng = 0;
+	var lat = 0;
+	var lng = 0;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position){
 			lat = position.coords.latitude;
 			lng = position.coords.longitude;
 		});
 		myLocation = new google.maps.LatLng(lat,lng);
-		map.setCenter(myLocation);
+		map.panTo(myLocation);
 	}
 	else {
 		myLocation = new google.maps.LatLng(42.4040289, -71.1202292999999);
-		map.setCenter(myLocation);
+		map.panTo(myLocation);
 	}
 }
 
