@@ -12,7 +12,7 @@ function initialize(){
 		"http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
 	xhr.onreadystatechange = dataReady;
 	xhr.send(null);
-	console.log(getLocation());
+	getLocation();
 	/*var marker = new google.maps.Marker({
 		position:latlng,
 		map: map,
@@ -62,10 +62,10 @@ function getLocation() {
 			myLocation = new google.maps.LatLng(lat,lng);
 			map.panTo(myLocation);
 			var marker = new google.maps.Marker({
-			position:myLocation,
-			map: map,
-			title: 'You are here.'
-	});
+				position:myLocation,
+				map: map,
+				title: 'You are here.'
+			});
 		});
 	}
 	else {
