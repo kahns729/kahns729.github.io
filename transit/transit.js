@@ -1,27 +1,28 @@
 var xhr;
 //stations of the relevant line
 var stations = new Array();
+var myLocation;
 
 function initialize(){
+	//Boston
 	latlng = new google.maps.LatLng(42.3581, -71.0636);
+	//Create map centered on Boston
 	myOptions = {center:latlng, zoom:14};
 	map = new google.maps.Map(
 		document.getElementById("map_canvas"),myOptions);
+	//request station data (line, lat, long)
 	xhr = new XMLHttpRequest();
 	xhr.open("GET", 
 		"http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
+	//once data retrieved, run app's functionality
 	xhr.onreadystatechange = dataReady;
 	xhr.send(null);
-	getLocation();
-	/*var marker = new google.maps.Marker({
-		position:latlng,
-		map: map,
-		title: 'Hello World!'
-	});*/
 }
 
 function dataReady(){
+	//successfully loaded data
 	if(xhr.readyState == 4 && xhr.status == 200){
+		//parse data
 		schedule = JSON.parse(xhr.responseText);
 		var pos = 0;
 		var line = schedule["line"];
@@ -32,8 +33,12 @@ function dataReady(){
 				pos++;
 			}
 		}
+		//plot the stations on the map
 		plotStations(stations);
+		//retrieve user location and relevant data that follows
+		getLocation();
 	}
+	//data didn't load correctly (500 error)
 	else if (xhr.readyState == 4 && xhr.status == 500){
 		console.log("error");
 	}
@@ -53,6 +58,7 @@ function plotStations(stations){
 }
 
 function getLocation() {
+	/*
 	var lat = 0;
 	var lng = 0;
 	if (navigator.geolocation) {
@@ -70,6 +76,46 @@ function getLocation() {
 	}
 	else {
 		console.log("error: geolocation not supported");
+	}
+	*/
+	//hard code location for now
+	myLocation = new google.maps.LatLng(42.404036, -71.12024439999999)
+	//center map on user's locations
+	map.panTo(myLocation);
+	//mark user's location
+	var marker = new google.maps.Marker({
+		position:myLocation,
+		map:map,
+		title: 'You are here.'
+	})
+	findClosest();
+}
+
+function findClosest(){
+	var closestStation = stations[0];
+	console.log(stations);
+	for (var i=1; i<stations.length;i++){
+		if (distance(myLocation.lat(),myLocation.lng(),
+			stations[i][2],stations[i][3]) <
+			distance(myLocation.lat(),myLocation.lng(),
+				closestStation[2],closestStation[3])){
+			closestStation = stations[i];
+		}
+		console.log(closestStation);
+	}
+	function distance(lt1,ln1,lt2,ln2){
+		function toRad(dgrs){
+			return dgrs * Math.PI / 180;
+		}
+		var R = 6371;
+		var dlt = toRad(lt2-lt1);
+		var dln = toRad(ln2-ln1);
+		var lt1 = toRad(lt1);
+		var lt2 = toRad(lt2);
+		var a = Math.sin(dlt/2)*Math.sin(dlt/2)+Math.sin(dln/2)*Math.sin(dln/2)*Math.cos(lt1)*Math.cos(lt2);
+		var c = 2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+		var d = R*c;
+		return d;
 	}
 }
 
