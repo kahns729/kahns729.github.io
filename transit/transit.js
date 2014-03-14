@@ -228,6 +228,7 @@ function getInfo(name){
 					+ destination["TripID"] + "</td><td>" + 
 					destination["Destination"] + "</td><td>" +
 					secondsToHHMMSS(s["Seconds"]) + "</td></tr>";*/
+					trains[numTrains] = new Array();
 					trains[numTrains][0] = "<tr><td>" + line[0].toUpperCase() +line.slice(1) + "</td><td>"
 						+ destination["TripID"] + "</td><td>" + 
 						destination["Destination"] + "</td><td>" +
