@@ -234,6 +234,7 @@ function getInfo(name){
 						destination["Destination"] + "</td><td>" +
 						secondsToHHMMSS(s["Seconds"]) + "</td></tr>";
 					trains[numTrains][1] = s["Seconds"];
+					numTrains++;
 			}
 		}
 	}
