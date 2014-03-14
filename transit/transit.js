@@ -46,7 +46,6 @@ function dataReady(){
 	}
 	//data didn't load correctly (500 error)
 	else if (xhr.readyState == 4 && xhr.status == 500){
-		var marker;
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position){
 				lat = position.coords.latitude;
@@ -58,16 +57,16 @@ function dataReady(){
 					map: map,
 					title: 'You are here.'
 				});
+				//custom content to display at myLocation
+				here = "<p>You are here.</br>Could not load T line.</p>"
+				//display the content
+				var myWindow = new google.maps.InfoWindow({
+					content:here,
+					maxWidth:200
+				});
+				//open the display window
+				myWindow.open(map,hereMarker);
 			});
-			//custom content to display at myLocation
-			here = "<p>You are here.</br>Could not load T line.</p>"
-			//display the content
-			var myWindow = new google.maps.InfoWindow({
-				content:here,
-				maxWidth:200
-			});
-			//open the display window
-			myWindow.open(map,hereMarker);
 		}
 		else {
 			console.log("error: geolocation not supported");
