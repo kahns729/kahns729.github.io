@@ -212,6 +212,9 @@ function getLocation() {
 
 //return string of html for the table to be shown in a station's info window
 function getInfo(name){
+	//each train has a string for html to represent it, and a time element to sort it
+	var trains[];
+	var numTrains = 0;
 	html = "<h3>" + name + "</h3>" + 
 		"<table><tr><td>Line</td><td>Trip #</td><td>Direction</td><td>Time Remaining</tr></tr>";
 	for (i = 0; i < schedule["schedule"].length; i++){
@@ -221,10 +224,17 @@ function getInfo(name){
 		for (j = 0; j < stops.length; j++){
 			s = stops[j];
 			if (s["Stop"] == name) {
-				html = html + "<tr><td>" + line[0].toUpperCase() +line.slice(1) + "</td><td>"
+				/*html = html + "<tr><td>" + line[0].toUpperCase() +line.slice(1) + "</td><td>"
 					+ destination["TripID"] + "</td><td>" + 
 					destination["Destination"] + "</td><td>" +
-					secondsToHHMMSS(s["Seconds"]) + "</td></tr>";
+					secondsToHHMMSS(s["Seconds"]) + "</td></tr>";*/
+					trains[numTrains][0] = "<tr><td>" + line[0].toUpperCase() +line.slice(1) + "</td><td>"
+						+ destination["TripID"] + "</td><td>" + 
+						destination["Destination"] + "</td><td>" +
+						secondsToHHMMSS(s["Seconds"]) + "</td></tr>";
+					trains[numTrains][1] = s["Seconds"];
+					html = html + trains[numTrains][0];
+					numTrains++;
 			}
 		}
 	}
