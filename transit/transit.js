@@ -45,7 +45,32 @@ function dataReady(){
 	}
 	//data didn't load correctly (500 error)
 	else if (xhr.readyState == 4 && xhr.status == 500){
-		console.log("error");
+		var marker;
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position){
+				lat = position.coords.latitude;
+				lng = position.coords.longitude;
+				myLocation = new google.maps.LatLng(lat,lng);
+				map.panTo(myLocation);
+				marker = new google.maps.Marker({
+					position:myLocation,
+					map: map,
+					title: 'You are here.'
+				});
+			});
+			//custom content to display at myLocation
+			here = "<p>You are here.</br>Could not load T line.</p>"
+			//display the content
+			var myWindow = new google.maps.InfoWindow({
+				content:here,
+				maxWidth:200
+			});
+			//open the display window
+			myWindow.open(map,marker);
+		}
+		else {
+			console.log("error: geolocation not supported");
+		}
 	}
 };
 
@@ -83,7 +108,7 @@ function plotStations(stations){
     		geodesic: true,
 	    	strokeColor: 'red',
 	    	strokeOpacity: 1.0,
-	    	strokeWeight: 4
+	    	strokeWeight: 6
   		});
   		redLine1.setMap(map);
   		path2 = path.slice(18,22);
@@ -94,7 +119,7 @@ function plotStations(stations){
   			geodesic: true,
   			strokeColor:'red',
   			strokeOpacity: 1.0,
-  			strokeWeight: 4
+  			strokeWeight: 6
   		});
   		redLine2.setMap(map);
 	}
@@ -108,7 +133,7 @@ function plotStations(stations){
     		geodesic: true,
 	    	strokeColor: color,
 	    	strokeOpacity: 1.0,
-	    	strokeWeight: 4
+	    	strokeWeight: 6
   		});
   		orangeorblue.setMap(map);
 	}
@@ -175,6 +200,7 @@ function getLocation() {
 		google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
   		});
+  		console.log(distance(20,20,21,21));
 		//distance between two lats and longs
 		function distance(lt1,ln1,lt2,ln2){
 			function toRad(dgrs){
