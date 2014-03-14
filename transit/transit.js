@@ -236,16 +236,12 @@ function getInfo(name){
 				html = html + "<tr><td>" + line[0].toUpperCase() +line.slice(1) + "</td><td>"
 					+ destination["TripID"] + "</td><td>" + 
 					destination["Destination"] + "</td><td>" +
-					s["Seconds"] + "</td></tr>";
+					secondsToHHMMSS(s["Seconds"]) + "</td></tr>";
 			}
 		}
 	}
 	return html + "</table>";
 }
-/*
-function secondsToHHMMSS(seconds){
-	
-}*/
 
 //array of stations. 
 //each station is an array with 4 indices
@@ -308,4 +304,17 @@ stationsBefore = [
 	["Red","Shawmut",42.29312583,-71.06573796000001],
 	["Red","Ashmont",42.284652,-71.06448899999999]
 ]
+
+function secondsToHHMMSS(seconds){
+	var hh = "";
+	hh = hh + Math.floor(seconds/3600);
+	seconds = seconds % 3600;
+	var mm = "";
+	mm = mm + Math.floor(seconds/60);
+	seconds = seconds % 60;
+	var ss = "";
+	ss = ss + Math.floor(seconds);
+	return hh + ":" + mm + ":" + ss;
+}
+
 
