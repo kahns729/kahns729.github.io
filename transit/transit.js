@@ -161,18 +161,8 @@ function getLocation() {
 	else {
 		console.log("error: geolocation not supported");
 	}
-	/*
-	//hard code location for now
-	myLocation = new google.maps.LatLng(42.404036, -71.12024439999999)
-	//center map on user's locations
-	map.panTo(myLocation);
-	//mark user's location
-	var marker = new google.maps.Marker({
-		position:myLocation,
-		map:map,
-		title: 'You are here'
-	});*/
-	//findClosest();
+
+	
 	function findClosest(){
 		var closestStation = stations[0];
 		for (var i=1; i<stations.length;i++){
