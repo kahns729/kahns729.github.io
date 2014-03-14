@@ -159,6 +159,9 @@ function getLocation() {
 			});
 			//open the display window
 			myWindow.open(map,marker);
+			google.maps.event.addListener(marker, 'click', function() {
+    			myWindow.open(map,marker);
+  			});
 		});
 	}
 	else {
@@ -202,9 +205,9 @@ function getLocation() {
 		//open the display window
 		myWindow.open(map,marker);*/
 		//add a listener to open whenever marker is clicked
-		google.maps.event.addListener(marker, 'click', function() {
+		/*google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
-  		});
+  		});*/
   		console.log(distance(20,20,21,21));
 		//distance between two lats and longs
 		function distance(lt1,ln1,lt2,ln2){
