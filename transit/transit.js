@@ -213,7 +213,7 @@ function getLocation() {
 //return string of html for the table to be shown in a station's info window
 function getInfo(name){
 	//each train has a string for html to represent it, and a time element to sort it
-	var trains[];
+	var trains = new Array();
 	var numTrains = 0;
 	html = "<h3>" + name + "</h3>" + 
 		"<table><tr><td>Line</td><td>Trip #</td><td>Direction</td><td>Time Remaining</tr></tr>";
