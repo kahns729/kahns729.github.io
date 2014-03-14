@@ -52,12 +52,20 @@ function dataReady(){
 function plotStations(stations){
 	var path = [];
 	var markers = new Array();
+	var image;
+	if (line == "red")
+		image = "red_MarkerT.png";
+	else if (line == "blue")
+		image = "blue_MarkerT.png";
+	else if (line == "orange")
+		image = "orange_MarkerT.png";
 	for (var i=0;i<stations.length;i++){
 		marker = new google.maps.Marker({
 			position:new google.maps.LatLng(
 				stations[i][2],stations[i][3]
 				),
 			map:map,
+			icon:image,
 			title:stations[i][1]
 		});
 		path[i] = new google.maps.LatLng(stations[i][2],stations[i][3]);
@@ -205,10 +213,10 @@ function getInfo(name){
 	}
 	return html + "</table>";
 }
-
+/*
 function secondsToHHMMSS(seconds){
 	
-}
+}*/
 
 //array of stations. 
 //each station is an array with 4 indices
