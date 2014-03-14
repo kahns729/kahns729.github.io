@@ -153,15 +153,7 @@ function getLocation() {
 				map: map,
 				title: 'You are here.'
 			});
-			var myWindow = new google.maps.InfoWindow({
-				content:youAreHere,
-				maxWidth:200
-			});
-			//open the display window
-			myWindow.open(map,marker);
-			google.maps.event.addListener(marker, 'click', function() {
-    			myWindow.open(map,marker);
-  			});
+			findClosest();
 		});
 	}
 	else {
@@ -198,16 +190,16 @@ function getLocation() {
 				closestStation[2],closestStation[3]) *
 			0.621371).toFixed(4) + " miles.</p>";
 		//display the content
-		/*var myWindow = new google.maps.InfoWindow({
+		var myWindow = new google.maps.InfoWindow({
 				content:youAreHere,
 				maxWidth:200
 		});
 		//open the display window
 		myWindow.open(map,marker);*/
 		//add a listener to open whenever marker is clicked
-		/*google.maps.event.addListener(marker, 'click', function() {
+		google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
-  		});*/
+  		});
   		console.log(distance(20,20,21,21));
 		//distance between two lats and longs
 		function distance(lt1,ln1,lt2,ln2){
