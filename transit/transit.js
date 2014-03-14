@@ -31,7 +31,6 @@ function dataReady(){
 		schedule = JSON.parse(xhr.responseText);
 		var pos = 0;
 		line = schedule["line"];
-		console.log(schedule);
 		//choose relevant stations
 		for (var i=0; i<stationsBefore.length;i++){
 			if (stationsBefore[i][0].toLowerCase() == line){
@@ -175,7 +174,6 @@ function getLocation() {
 	});*/
 	//findClosest();
 	function findClosest(){
-		console.log("hello");
 		var closestStation = stations[0];
 		for (var i=1; i<stations.length;i++){
 			if (distance(myLocation.lat(),myLocation.lng(),
@@ -307,13 +305,13 @@ stationsBefore = [
 
 function secondsToHHMMSS(seconds){
 	var hh = "";
-	hh = hh + Math.floor(seconds/3600);
+	hh = hh + Math.floor(seconds/3600).toString();
 	seconds = seconds % 3600;
 	var mm = "";
-	mm = mm + Math.floor(seconds/60);
+	mm = mm + Math.floor(seconds/60).toString();
 	seconds = seconds % 60;
 	var ss = "";
-	ss = ss + Math.floor(seconds);
+	ss = ss + Math.floor(seconds).toString();
 	return hh + ":" + mm + ":" + ss;
 }
 
