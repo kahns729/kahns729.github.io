@@ -66,6 +66,9 @@ function dataReady(){
 				});
 				//open the display window
 				myWindow.open(map,hereMarker);
+				google.maps.event.addListener(hereMarker, 'click', function() {
+		    		myWindow.open(map,hereMarker);
+		  		});
 			});
 		}
 		else {
