@@ -234,11 +234,16 @@ function getInfo(name){
 						destination["Destination"] + "</td><td>" +
 						secondsToHHMMSS(s["Seconds"]) + "</td></tr>";
 					trains[numTrains][1] = s["Seconds"];
-					html = html + trains[numTrains][0];
-					numTrains++;
 			}
 		}
 	}
+	trains.sort(function(a,b){
+		return a[1] - b[1];
+	});
+	for (j = 0; j < numTrains; j++){
+		html = html + trains[j][0];
+	}
+
 	return html + "</table>";
 }
 
