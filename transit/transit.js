@@ -172,6 +172,7 @@ function getLocation() {
 	});*/
 	//findClosest();
 	function findClosest(){
+		console.log("hello");
 		var closestStation = stations[0];
 		for (var i=1; i<stations.length;i++){
 			if (distance(myLocation.lat(),myLocation.lng(),
@@ -195,7 +196,7 @@ function getLocation() {
 				maxWidth:200
 		});
 		//open the display window
-		myWindow.open(map,marker);*/
+		myWindow.open(map,marker);
 		//add a listener to open whenever marker is clicked
 		google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
