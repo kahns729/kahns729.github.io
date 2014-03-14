@@ -237,7 +237,7 @@ function getInfo(name){
 			}
 		}
 	}
-	trains.sort(function(a,b){
+	trains = trains.sort(function(a,b){
 		return a[1] - b[1];
 	});
 	for (j = 0; j < numTrains; j++){
