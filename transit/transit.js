@@ -312,22 +312,27 @@ stationsBefore = [
 ]
 
 function secondsToHHMMSS(seconds){
-	var hh = "";
-	hh = hh + Math.floor(seconds/3600).toString();
-	if (hh.length == 1)
-		hh = "0" + hh;
-	seconds = seconds % 3600;
-	var mm = "";
-	mm = mm + Math.floor(seconds/60).toString();
-	if (mm.length == 1)
-		mm = "0" + mm;
-	seconds = seconds % 60;
-	var ss = "";
-	ss = ss + Math.floor(seconds).toString();
-	if (ss.length == 1){
-		ss = "0" + ss;
+	if (seconds <= 0){
+		return "00:00:00";
 	}
-	return hh + ":" + mm + ":" + ss;
+		else{
+		var hh = "";
+		hh = hh + Math.floor(seconds/3600).toString();
+		if (hh.length == 1)
+			hh = "0" + hh;
+		seconds = seconds % 3600;
+		var mm = "";
+		mm = mm + Math.floor(seconds/60).toString();
+		if (mm.length == 1)
+			mm = "0" + mm;
+		seconds = seconds % 60;
+		var ss = "";
+		ss = ss + Math.floor(seconds).toString();
+		if (ss.length == 1){
+			ss = "0" + ss;
+		}
+		return hh + ":" + mm + ":" + ss;
+	}
 }
 
 
