@@ -6,6 +6,7 @@ var myLocation;
 var youAreHere = "<p>You are here.</p>";
 //the line
 var line;
+var hereMarker;
 
 function initialize(){
 	//Boston
@@ -52,7 +53,7 @@ function dataReady(){
 				lng = position.coords.longitude;
 				myLocation = new google.maps.LatLng(lat,lng);
 				map.panTo(myLocation);
-				marker = new google.maps.Marker({
+				hereMarker = new google.maps.Marker({
 					position:myLocation,
 					map: map,
 					title: 'You are here.'
@@ -66,7 +67,7 @@ function dataReady(){
 				maxWidth:200
 			});
 			//open the display window
-			myWindow.open(map,marker);
+			myWindow.open(map,hereMarker);
 		}
 		else {
 			console.log("error: geolocation not supported");
@@ -148,7 +149,7 @@ function getLocation() {
 			lng = position.coords.longitude;
 			myLocation = new google.maps.LatLng(lat,lng);
 			map.panTo(myLocation);
-			var marker = new google.maps.Marker({
+			marker = new google.maps.Marker({
 				position:myLocation,
 				map: map,
 				title: 'You are here.'
@@ -201,7 +202,6 @@ function getLocation() {
 		google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
   		});
-  		console.log(distance(20,20,21,21));
 		//distance between two lats and longs
 		function distance(lt1,ln1,lt2,ln2){
 			function toRad(dgrs){
