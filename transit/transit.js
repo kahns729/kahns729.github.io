@@ -170,7 +170,7 @@ function getLocation() {
 		map:map,
 		title: 'You are here'
 	});*/
-	findClosest();
+	//findClosest();
 	function findClosest(){
 		var closestStation = stations[0];
 		for (var i=1; i<stations.length;i++){
