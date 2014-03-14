@@ -153,6 +153,12 @@ function getLocation() {
 				map: map,
 				title: 'You are here.'
 			});
+			var myWindow = new google.maps.InfoWindow({
+				content:youAreHere,
+				maxWidth:200
+			});
+			//open the display window
+			myWindow.open(map,marker);
 		});
 	}
 	else {
@@ -189,12 +195,12 @@ function getLocation() {
 				closestStation[2],closestStation[3]) *
 			0.621371).toFixed(4) + " miles.</p>";
 		//display the content
-		var myWindow = new google.maps.InfoWindow({
+		/*var myWindow = new google.maps.InfoWindow({
 				content:youAreHere,
 				maxWidth:200
 		});
 		//open the display window
-		myWindow.open(map,marker);
+		myWindow.open(map,marker);*/
 		//add a listener to open whenever marker is clicked
 		google.maps.event.addListener(marker, 'click', function() {
     		myWindow.open(map,marker);
