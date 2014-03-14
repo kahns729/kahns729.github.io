@@ -140,7 +140,6 @@ function plotStations(stations){
 };
 
 function getLocation() {
-	/*
 	var lat = 0;
 	var lng = 0;
 	if (navigator.geolocation) {
@@ -159,7 +158,7 @@ function getLocation() {
 	else {
 		console.log("error: geolocation not supported");
 	}
-	*/
+	/*
 	//hard code location for now
 	myLocation = new google.maps.LatLng(42.404036, -71.12024439999999)
 	//center map on user's locations
@@ -169,7 +168,7 @@ function getLocation() {
 		position:myLocation,
 		map:map,
 		title: 'You are here'
-	});
+	});*/
 	findClosest();
 	function findClosest(){
 		var closestStation = stations[0];
