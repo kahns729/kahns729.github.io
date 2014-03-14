@@ -316,8 +316,9 @@ function secondsToHHMMSS(seconds){
 	seconds = seconds % 60;
 	var ss = "";
 	ss = ss + Math.floor(seconds).toString();
-	if (ss.length == 1)
-		mm = "0" + mm;
+	if (ss.length == 1){
+		ss = "0" + ss;
+	}
 	return hh + ":" + mm + ":" + ss;
 }
 
